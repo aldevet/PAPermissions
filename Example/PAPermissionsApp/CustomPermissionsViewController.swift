@@ -52,7 +52,7 @@ class CustomPermissionsViewController: PAPermissionsViewController {
 			PAPermissionsItem.itemForType(.photoLibrary, reason: PAPermissionDefaultReason)!,
 			PAPermissionsItem.itemForType(.notifications, reason: "Required to send you great updates")!,
 			PAPermissionsItem.itemForType(.camera, reason: PAPermissionDefaultReason)!,
-			PAPermissionsItem(type: .custom, identifier: "my-custom-permission", title: "Custom Option", reason: "Optional", icon: UIImage(named: "pa_checkmark_icon", in: Bundle(for: PAPermissionsViewController.self), compatibleWith: nil)!, canBeDisabled: true)]
+			PAPermissionsItem(type: .custom, identifier: "my-custom-permission", title: "Custom Option", reason: "This is a really long reason to show how the cell can expand itself. This is a really long reason to show how the cell can expand itself. This is a really long reason to show how the cell can expand itself. This is a really long reason to show how the cell can expand itself", icon: UIImage(named: "pa_checkmark_icon", in: Bundle(for: PAPermissionsViewController.self), compatibleWith: nil)!, canBeDisabled: true)]
 
 		let handlers = [
 			PAPermissionsType.calendar.rawValue: self.calendarCheck,

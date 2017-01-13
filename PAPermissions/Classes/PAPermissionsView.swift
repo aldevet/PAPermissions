@@ -303,6 +303,8 @@ class PAPermissionsView: UIView, UITableViewDataSource, UITableViewDelegate {
 			self.tableView.delegate = self
 			self.tableView.register(PAPermissionsTableViewCell.self, forCellReuseIdentifier: "permission-item")
 			self.tableView.tableFooterView = UIView()
+            self.tableView.estimatedRowHeight = 50
+            self.tableView.rowHeight = UITableViewAutomaticDimension
 			
 			let refreshControl = UIRefreshControl()
 			refreshControl.addTarget(self, action: #selector(PAPermissionsView.refresh(_:)), for: UIControlEvents.valueChanged)
@@ -360,6 +362,7 @@ class PAPermissionsView: UIView, UITableViewDataSource, UITableViewDelegate {
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "permission-item", for: indexPath) as! PAPermissionsTableViewCell
+        cell.frame = frame
 		let item = self.permissions[(indexPath as NSIndexPath).row]
 		cell.didSelectItem = {selectedPermission in
 			if let delegate = self.delegate {
@@ -372,12 +375,10 @@ class PAPermissionsView: UIView, UITableViewDataSource, UITableViewDelegate {
 		cell.selectionStyle = .none
 		cell.titleLabel.text = item.title
 		cell.detailsLabel.text = item.reason
+        cell.detailsLabel.sizeToFit()
+        cell.detailsLabel.setNeedsDisplay()
 		cell.iconImageView.image = item.icon.withRenderingMode(.alwaysTemplate)
 		cell.permission = item
 		return cell
-	}
-	
-	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 50
 	}
 }
